@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Student Panel</h2>
+        <ul>
+            <li>Dashboard</li>
+            <li>My Queries</li>
+            <li>Profile</li>
+            <li onclick="logout()">Logout</li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Welcome, Student</h1>
+
+        <button>+ Raise New Query</button>
+
+        <h3>My Queries</h3>
+
+        <table>
+            <tr>
+                <th>Query ID</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Faculty Response</th>
+            </tr>
+
+            <tr>
+                <td>101</td>
+                <td>Exam Date Clarification</td>
+                <td>Academic</td>
+                <td>Pending</td>
+                <td>Waiting for response</td>
+            </tr>
+
+            <tr>
+                <td>102</td>
+                <td>Fee Payment Issue</td>
+                <td>Finance</td>
+                <td>Solved</td>
+                <td>Please check updated receipt</td>
+            </tr>
+
+            <tr>
+                <td>103</td>
+                <td>Portal Login Error</td>
+                <td>Technical</td>
+                <td>Unsolved</td>
+                <td>Please resubmit with screenshot</td>
+            </tr>
+        </table>
+
+    </div>
+
+</div>
+
+<script>
+function logout() {
+    window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

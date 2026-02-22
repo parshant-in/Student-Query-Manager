@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Faculty Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Sidebar Section -->
+    <div>
+        <h2>Faculty Panel</h2>
+        <ul>
+            <li>Dashboard</li>
+            <li>Assigned Queries</li>
+            <li>Profile</li>
+            <li>Logout</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- Main Section -->
+    <div>
+        <h1>Welcome, Faculty</h1>
+
+        <h3>Assigned Queries</h3>
+
+        <table border="1" cellpadding="10">
+            <tr>
+                <th>Query ID</th>
+                <th>Student Name</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+
+            <tr>
+                <td>101</td>
+                <td>Rahul Sharma</td>
+                <td>Exam Date Clarification</td>
+                <td>Academic</td>
+                <td>Pending</td>
+                <td>
+                    <button>View</button>
+                    <button>Respond</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>102</td>
+                <td>Anjali Verma</td>
+                <td>Fee Payment Issue</td>
+                <td>Finance</td>
+                <td>Pending</td>
+                <td>
+                    <button>View</button>
+                    <button>Respond</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>103</td>
+                <td>Vikas Singh</td>
+                <td>Portal Login Error</td>
+                <td>Technical</td>
+                <td>Unsolved</td>
+                <td>
+                    <button>View</button>
+                    <button>Respond</button>
+                </td>
+            </tr>
+
+        </table>
+
+        <hr>
+
+        <!-- Response Section Example -->
+        <h3>Respond to Query</h3>
+
+        <form>
+            <label>Query ID:</label>
+            <input type="text" placeholder="Enter Query ID">
+
+            <br><br>
+
+            <label>Response:</label><br>
+            <textarea rows="4" cols="50" placeholder="Write your response here..."></textarea>
+
+            <br><br>
+
+            <label>Status:</label>
+            <select>
+                <option value="">Select Status</option>
+                <option value="solved">Solved</option>
+                <option value="unsolved">Unsolved</option>
+            </select>
+
+            <br><br>
+
+            <button type="submit">Submit Response</button>
+        </form>
+
+    </div>
+
+</body>
+</html>
