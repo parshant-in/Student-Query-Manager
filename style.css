@@ -181,13 +181,13 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
-    background: white;
+    background: #eda5e4a6;
     border-radius: 8px;
     overflow: hidden;
 }
 
 th {
-    background-color: #e9f1ff;
+    background-color: #7276ff94;
     padding: 12px;
     text-align: left;
 }
