@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Query Manager</title>
+
+    <link rel="stylesheet" href="style.css">
+git 
+</head>
+<script src="script.js"></script>
+<body>
+
+<header id="heading">
+
+    <h1>Student Query Manager</h1>
+
+</header>
+
+
+
+<div id="body">
+<div id="slogan">
+    <h1><i>From Questions 
+        <br> to  Solutions <br>-Seamlessly.</i></h1>  
+</div>
+
+    <div class="form-container">
+        <h2>Login</h2>
+
+        <form>
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                placeholder="Enter your email"
+                required
+            >
+<hr>
+            <label>Password</label>
+
+            <input
+                type="password"
+                placeholder="Enter password"
+                required
+            ><hr>
+
+            <label>Login As</label>
+
+            <select id="role" required>
+
+                <option value="">
+                    Select Role
+                </option>
+
+                <option value="student">
+                    Student
+                </option>
+
+                <option value="faculty">
+                    Faculty
+                </option>
+
+            </select>
+
+
+
+            <button
+                type="button"
+                onclick="loginUser()"
+            >
+
+                Login
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script type="module" src="script.js"></script>
+
+</body>
+
+</html>

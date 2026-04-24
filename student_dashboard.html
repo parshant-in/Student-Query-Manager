@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<script src="script.js"></script>
+<body>
+
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <h2>Student Panel</h2>
+
+        <ul>
+
+            <li>Dashboard</li>
+
+            <li>My Queries</li>
+
+            <li>Profile</li>
+
+            <li onclick="logout()">
+                Logout
+            </li>
+
+        </ul>
+
+    </div>
+
+
+
+    <!-- Main -->
+    <div class="main-content">
+
+        <h1>Welcome Student</h1>
+
+
+        <!-- Query Form -->
+        <div class="query-box">
+
+            <input
+                type="text"
+                id="queryTitle"
+                placeholder="Query Title"
+            >
+
+
+            <select id="queryCategory">
+
+                <option value="">
+                    Select Domain
+                </option>
+
+                <option value="Academic">
+                    Academic
+                </option>
+
+                <option value="Technical">
+                    Technical
+                </option>
+
+                <option value="Finance">
+                    Finance
+                </option>
+
+            </select>
+
+            <br>
+            <textarea
+                id="queryDescription"
+                placeholder="Write your query"
+            ></textarea>
+
+            <br>
+            <button onclick="submitQuery()">
+
+                Submit Query
+
+            </button>
+
+        </div>
+
+
+
+        <!-- Query Table -->
+        <h2>My Queries</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Title</th>
+
+                    <th>Category</th>
+
+                    <th>Description</th>
+
+                    <th>Status</th>
+
+                    <th>Faculty Response</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="queryTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script type="module" src="script.js"></script>
+
+</body>
+
+</html>
