@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Faculty Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <h2>Faculty Panel</h2>
+
+        <ul>
+
+            <li>Dashboard</li>
+
+            <li>Queries</li>
+
+            <li>Profile</li>
+
+            <li onclick="logout()">
+                Logout
+            </li>
+
+        </ul>
+
+    </div>
+
+
+
+    <!-- Main -->
+    <div class="main-content">
+
+        <h1>Welcome Faculty</h1>
+
+        <h2>Student Queries</h2>
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Title</th>
+
+                    <th>Category</th>
+
+                    <th>Description</th>
+
+                    <th>Status</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="facultyTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script type="module" src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,9 +1,61 @@
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+
+    getFirestore,
+
+    collection,
+
+    addDoc,
+
+    onSnapshot,
+
+    updateDoc,
+
+    doc
+
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
+/* ================= FIREBASE ================= */
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyBmL8X255EvtFMiPA_jkLvRWbyeZ0VolFo",
+
+    authDomain: "student-query-manager.firebaseapp.com",
+
+    projectId: "student-query-manager",
+
+    storageBucket: "student-query-manager.firebasestorage.app",
+
+    messagingSenderId: "279506421734",
+
+    appId: "1:279506421734:web:6f22ac10a60dcede3bb827",
+
+    measurementId: "G-YG3MB3QEGT"
+
+};
+
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+
 /* ================= LOGIN ================= */
 
-function loginUser() {
+window.loginUser = function () {
 
     const role =
         document.getElementById("role").value;
+
 
 
     if(role === "student") {
@@ -22,22 +74,27 @@ function loginUser() {
 
         alert("Please select role");
     }
-}
+
+};
+
 
 
 
 /* ================= LOGOUT ================= */
 
-function logout() {
+window.logout = function () {
 
-    window.location.href = "index.html";
-}
+    window.location.href =
+        "index.html";
+
+};
+
 
 
 
 /* ================= SUBMIT QUERY ================= */
 
-function submitQuery() {
+window.submitQuery = async function () {
 
     const title =
         document.getElementById("queryTitle").value;
@@ -50,7 +107,7 @@ function submitQuery() {
 
 
 
-    if(!title || !category || !description){
+    if(!title || !category || !description) {
 
         alert("Please fill all fields");
 
@@ -59,37 +116,24 @@ function submitQuery() {
 
 
 
-    let queries =
-        JSON.parse(
-            localStorage.getItem("queries")
-        ) || [];
+    await addDoc(
 
+        collection(db, "queries"),
 
+        {
 
-    const newQuery = {
+            title: title,
 
-        id: Date.now(),
+            category: category,
 
-        title: title,
+            description: description,
 
-        category: category,
+            status: "Pending",
 
-        description: description,
+            response: "Waiting for response"
 
-        status: "Pending",
+        }
 
-        response: "Waiting for response"
-    };
-
-
-
-    queries.push(newQuery);
-
-
-
-    localStorage.setItem(
-        "queries",
-        JSON.stringify(queries)
     );
 
 
@@ -98,127 +142,143 @@ function submitQuery() {
 
 
 
-    document.getElementById(
-        "queryTitle"
-    ).value = "";
+    document.getElementById("queryTitle").value = "";
 
+    document.getElementById("queryCategory").value = "";
 
-    document.getElementById(
-        "queryCategory"
-    ).value = "";
+    document.getElementById("queryDescription").value = "";
 
-
-    document.getElementById(
-        "queryDescription"
-    ).value = "";
-
-
-
-    loadStudentQueries();
-}
+};
 
 
 
 
-/* ================= STUDENT TABLE ================= */
+/* ================= STUDENT DASHBOARD ================= */
 
 function loadStudentQueries() {
 
     const table =
-        document.getElementById("queryTable");GPUCanvasContext
+        document.getElementById("queryTable");
+
+
 
     if(!table) return;
 
 
 
-    table.innerHTML = "";
+    onSnapshot(
+
+        collection(db, "queries"),
+
+        (snapshot) => {
+
+            table.innerHTML = "";
 
 
 
-    let queries =
-        JSON.parse(
-            localStorage.getItem("queries")
-        ) || [];
+            snapshot.forEach((docData) => {
+
+                const query =
+                    docData.data();
 
 
 
-    queries.forEach((query) => {
+                table.innerHTML += `
 
-        table.innerHTML += `
+                <tr>
 
-        <tr>
+                    <td>${query.title}</td>
 
-            <td>${query.title}</td>
+                    <td>${query.category}</td>
 
-            <td>${query.category}</td>
+                    <td>${query.description}</td>
 
-            <td>${query.description}</td>
+                    <td>${query.status}</td>
 
-            <td>${query.status}</td>
+                    <td>${query.response}</td>
 
-            <td>${query.response}</td>
+                </tr>
 
-        </tr>
+                `;
 
-        `;
-    });
+            });
+
+        }
+
+    );
+
 }
 
 
 
 
-/* ================= FACULTY TABLE ================= */
+/* ================= FACULTY DASHBOARD ================= */
 
 function loadFacultyQueries() {
 
     const table =
         document.getElementById("facultyTable");
 
+
+
     if(!table) return;
 
 
 
-    table.innerHTML = "";
+    onSnapshot(
+
+        collection(db, "queries"),
+
+        (snapshot) => {
+
+            table.innerHTML = "";
 
 
 
-    let queries =
-        JSON.parse(
-            localStorage.getItem("queries")
-        ) || [];
+            snapshot.forEach((docData) => {
+
+                const query =
+                    docData.data();
+
+                const id =
+                    docData.id;
 
 
 
-    queries.forEach((query, index) => {
+                table.innerHTML += `
 
-        table.innerHTML += `
+                <tr>
 
-        <tr>
+                    <td>${query.title}</td>
 
-            <td>${query.title}</td>
+                    <td>${query.category}</td>
 
-            <td>${query.category}</td>
+                    <td>${query.description}</td>
 
-            <td>${query.description}</td>
+                    <td>${query.status}</td>
 
-            <td>${query.status}</td>
+                    <td>
 
-            <td>
+                        <button
+                            onclick="respondQuery('${id}')"
+                        >
 
-                <button
-                    onclick="respondQuery(${index})"
-                >
+                            Respond
 
-                    Respond
+                        </button>
 
-                </button>
+                    </td>
 
-            </td>
+                </tr>
 
-        </tr>
+                `;
 
-        `;
-    });
+            });
+
+        }
+
+    );
+
 }
 
 
@@ -226,44 +286,41 @@ function loadFacultyQueries() {
 
 /* ================= FACULTY RESPONSE ================= */
 
-function respondQuery(index) {
-
-    let queries =
-        JSON.parse(
-            localStorage.getItem("queries")
-        ) || [];
-
+window.respondQuery = async function (id) {
 
     const response =
         prompt("Write response");
+
 
 
     if(!response) return;
 
 
 
-    queries[index].response =
-        response;
-
-
-    queries[index].status =
-        "Solved";
+    const queryRef =
+        doc(db, "queries", id);
 
 
 
-    localStorage.setItem(
-        "queries",
-        JSON.stringify(queries)
+    await updateDoc(
+
+        queryRef,
+
+        {
+
+            response: response,
+
+            status: "Solved"
+
+        }
+
     );
 
 
 
     alert("Response Submitted");
 
-
-
-    loadFacultyQueries();
-}
+};
 
 
 
@@ -272,4 +329,4 @@ function respondQuery(index) {
 
 loadStudentQueries();
 
-loadFacultyQueries();
+loadFacultyQueries(); 
